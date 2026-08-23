@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        مدیریت محصولات | Tiam Wood Art
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="container nav">
+
+        <a
+            href="index.html"
+            class="logo">
+
+            <span>
+                TIAM
+            </span>
+
+            <small>
+                WOOD ART
+            </small>
+
+        </a>
+
+
+        <a
+            href="index.html"
+            class="back-button">
+
+            ← بازگشت به فروشگاه
+
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= ADMIN ================= -->
+
+<main class="admin-page">
+
+    <div class="container">
+
+
+        <!-- عنوان -->
+
+        <div class="admin-title">
+
+            <span>
+                مدیریت فروشگاه
+            </span>
+
+            <h1>
+                محصولات Tiam Wood Art
+            </h1>
+
+            <p>
+                اضافه، ویرایش یا حذف محصولات
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= FORM ================= -->
+
+        <div class="admin-form-box">
+
+
+            <h2 id="formTitle">
+                افزودن محصول جدید
+            </h2>
+
+
+            <form id="productForm">
+
+
+                <!-- نام -->
+
+                <label for="productName">
+                    نام محصول
+                </label>
+
+                <input
+                    type="text"
+                    id="productName"
+                    placeholder="مثلاً ساعت چوبی"
+                    required>
+
+
+
+                <!-- قیمت -->
+
+                <label for="productPrice">
+                    قیمت (تومان)
+                </label>
+
+                <input
+                    type="number"
+                    id="productPrice"
+                    placeholder="850000"
+                    min="0"
+                    required>
+
+
+
+                <!-- دسته بندی -->
+
+                <label for="productCategory">
+                    دسته‌بندی
+                </label>
+
+                <select
+                    id="productCategory">
+
+                    <option value="دکور چوبی">
+                        دکور چوبی
+                    </option>
+
+                    <option value="لوازم کاربردی">
+                        لوازم کاربردی
+                    </option>
+
+                    <option value="هدیه">
+                        هدیه
+                    </option>
+
+                </select>
+
+
+
+                <!-- ================= عکس‌ها ================= -->
+
+                <label>
+                    عکس‌های محصول
+                </label>
+
+
+                <p class="admin-help-text">
+
+                    حداکثر ۶ عکس انتخاب کن.
+                    عکس اول به‌عنوان عکس اصلی محصول استفاده می‌شود.
+
+                </p>
+
+
+                <input
+                    type="file"
+                    id="productImageFiles"
+                    accept="image/*"
+                    multiple>
+
+
+                <!-- پیش نمایش -->
+
+                <div
+                    id="imagePreview"
+                    class="image-preview">
+
+                    <span>
+                        هنوز عکسی انتخاب نشده
+                    </span>
+
+                </div>
+
+
+
+                <!-- توضیحات -->
+
+                <label for="productDescription">
+                    توضیحات
+                </label>
+
+                <textarea
+                    id="productDescription"
+                    rows="4"
+                    placeholder="توضیحات محصول..."
+                    required></textarea>
+
+
+
+                <!-- ذخیره -->
+
+                <button
+                    type="submit"
+                    class="admin-add-button"
+                    id="formSubmitButton">
+
+                    + افزودن محصول
+
+                </button>
+
+
+
+                <!-- لغو -->
+
+                <button
+                    type="button"
+                    class="cancel-edit-button"
+                    id="cancelEditButton">
+
+                    لغو ویرایش
+
+                </button>
+
+
+            </form>
+
+        </div>
+
+
+
+        <!-- ================= PRODUCTS ================= -->
+
+        <div class="admin-products-box">
+
+
+            <h2>
+                محصولات فعلی
+            </h2>
+
+
+            <div
+                id="adminProductList">
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="container footer">
+
+
+        <div class="footer-logo">
+
+            TIAM
+
+            <span>
+                WOOD ART
+            </span>
+
+        </div>
+
+
+        <p>
+            مدیریت فروشگاه
+        </p>
+
+
+        <p class="copyright">
+            © 2026 Tiam Wood Art
+        </p>
+
+
+    </div>
+
+</footer>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+
+// ==========================================
+// محصولات پیش‌فرض
+// ==========================================
+
+const defaultProducts = [
+
+    {
+
+        name:
+            "ساعت چوبی دست‌ساز",
+
+        description:
+            "ساخته شده از چوب طبیعی گردو",
+
+        price:
+            850000,
+
+        image:
+            "images/saat.jpg",
+
+        images:
+            [
+                "images/saat.jpg"
+            ],
+
+        category:
+            "دکور چوبی"
+
+    },
+
+
+    {
+
+        name:
+            "استند چوبی",
+
+        description:
+            "ساده، زیبا و کاربردی",
+
+        price:
+            320000,
+
+        image:
+            "images/stand.jpg",
+
+        images:
+            [
+                "images/stand.jpg"
+            ],
+
+        category:
+            "لوازم کاربردی"
+
+    },
+
+
+    {
+
+        name:
+            "باکس چوبی",
+
+        description:
+            "مناسب برای هدیه",
+
+        price:
+            650000,
+
+        image:
+            "images/box.jpg",
+
+        images:
+            [
+                "images/box.jpg"
+            ],
+
+        category:
+            "هدیه"
+
+    }
+
+];
+
+
+
+// ==========================================
+// دریافت محصولات
+// ==========================================
+
+let adminProducts =
+    JSON.parse(
+        localStorage.getItem(
+            "tiamProducts"
+        )
+    );
+
+
+// اگر وجود نداشت
+
+if (!adminProducts) {
+
+    adminProducts =
+        defaultProducts;
+
+    saveProducts();
+
+}
+
+
+
+// ==========================================
+// حالت ویرایش
+// ==========================================
+
+let editingIndex = -1;
+
+
+// عکس‌های انتخاب شده
+
+let selectedImages = [];
+
+
+
+// ==========================================
+// ذخیره محصولات
+// ==========================================
+
+function saveProducts() {
+
+    localStorage.setItem(
+
+        "tiamProducts",
+
+        JSON.stringify(
+            adminProducts
+        )
+
+    );
+
+}
+
+
+
+// ==========================================
+// المنت‌ها
+// ==========================================
+
+const productForm =
+    document.getElementById(
+        "productForm"
+    );
+
+
+const imageFileInput =
+    document.getElementById(
+        "productImageFiles"
+    );
+
+
+const imagePreview =
+    document.getElementById(
+        "imagePreview"
+    );
+
+
+const cancelEditButton =
+    document.getElementById(
+        "cancelEditButton"
+    );
+
+
+
+// ==========================================
+// انتخاب چند عکس
+// ==========================================
+
+imageFileInput.addEventListener(
+    "change",
+    function() {
+
+
+        const files =
+            Array.from(
+                this.files
+            );
+
+
+        if (
+            files.length === 0
+        ) {
+
+            return;
+
+        }
+
+
+        // حداکثر ۶ عکس
+
+        if (
+            files.length > 6
+        ) {
+
+            alert(
+                "حداکثر ۶ عکس می‌توانی انتخاب کنی."
+            );
+
+            this.value = "";
+
+            return;
+
+        }
+
+
+        selectedImages = [];
+
+
+        imagePreview.innerHTML = "";
+
+
+
+        files.forEach(
+            function(file) {
+
+
+                // بررسی نوع فایل
+
+                if (
+                    !file.type.startsWith(
+                        "image/"
+                    )
+                ) {
+
+                    alert(
+                        `${file.name} عکس نیست.`
+                    );
+
+                    return;
+
+                }
+
+
+
+                // حداکثر ۵ مگابایت
+
+                if (
+                    file.size >
+                    5 * 1024 * 1024
+                ) {
+
+                    alert(
+                        `${file.name} بیشتر از ۵ مگابایت است.`
+                    );
+
+                    return;
+
+                }
+
+
+
+                const reader =
+                    new FileReader();
+
+
+
+                reader.onload =
+                    function(event) {
+
+
+                        selectedImages.push(
+
+                            event.target.result
+
+                        );
+
+
+
+                        const img =
+                            document.createElement(
+                                "img"
+                            );
+
+
+                        img.src =
+                            event.target.result;
+
+
+                        img.alt =
+                            "پیش‌نمایش محصول";
+
+
+                        imagePreview.appendChild(
+                            img
+                        );
+
+                    };
+
+
+
+                reader.readAsDataURL(
+                    file
+                );
+
+            }
+        );
+
+    }
+);
+
+
+
+// ==========================================
+// نمایش محصولات
+// ==========================================
+
+function renderAdminProducts() {
+
+
+    const list =
+        document.getElementById(
+            "adminProductList"
+        );
+
+
+    list.innerHTML = "";
+
+
+
+    if (
+        adminProducts.length === 0
+    ) {
+
+        list.innerHTML = `
+
+            <div class="empty-admin">
+
+                هنوز محصولی اضافه نشده است.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+
+    adminProducts.forEach(
+        function(product, index) {
+
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+
+            item.className =
+                "admin-product";
+
+
+
+            item.innerHTML = `
+
+                <img
+                    src="${product.image}"
+                    alt="${product.name}">
+
+
+                <div
+                    class="admin-product-info">
+
+                    <h3>
+                        ${product.name}
+                    </h3>
+
+
+                    <p>
+                        ${product.description}
+                    </p>
+
+
+                    <strong>
+
+                        ${Number(
+                            product.price
+                        ).toLocaleString(
+                            "fa-IR"
+                        )}
+
+                        تومان
+
+                    </strong>
+
+
+                    <span>
+                        ${product.category}
+                    </span>
+
+
+                    <small>
+
+                        ${
+                            (
+                                product.images ||
+                                [product.image]
+                            ).length
+                        }
+
+                        عکس
+
+                    </small>
+
+                </div>
+
+
+                <div
+                    class="admin-product-actions">
+
+
+                    <button
+                        type="button"
+                        class="edit-product">
+
+                        ویرایش
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="delete-product">
+
+                        حذف
+
+                    </button>
+
+
+                </div>
+
+            `;
+
+
+
+            // ویرایش
+
+            item
+                .querySelector(
+                    ".edit-product"
+                )
+                .addEventListener(
+                    "click",
+                    function() {
+
+                        editProduct(index);
+
+                    }
+                );
+
+
+
+            // حذف
+
+            item
+                .querySelector(
+                    ".delete-product"
+                )
+                .addEventListener(
+                    "click",
+                    function() {
+
+                        deleteProduct(index);
+
+                    }
+                );
+
+
+
+            list.appendChild(
+                item
+            );
+
+        }
+    );
+
+}
+
+
+
+// ==========================================
+// ویرایش محصول
+// ==========================================
+
+function editProduct(index) {
+
+
+    const product =
+        adminProducts[index];
+
+
+    if (!product) {
+
+        return;
+
+    }
+
+
+    editingIndex =
+        index;
+
+
+
+    // اطلاعات فرم
+
+    document.getElementById(
+        "productName"
+    ).value =
+        product.name;
+
+
+    document.getElementById(
+        "productPrice"
+    ).value =
+        product.price;
+
+
+    document.getElementById(
+        "productCategory"
+    ).value =
+        product.category;
+
+
+    document.getElementById(
+        "productDescription"
+    ).value =
+        product.description;
+
+
+
+    // عکس‌ها
+
+    selectedImages =
+        product.images ||
+        [
+            product.image
+        ];
+
+
+
+    imagePreview.innerHTML = "";
+
+
+
+    selectedImages.forEach(
+        function(image) {
+
+
+            const img =
+                document.createElement(
+                    "img"
+                );
+
+
+            img.src =
+                image;
+
+
+            img.alt =
+                product.name;
+
+
+            imagePreview.appendChild(
+                img
+            );
+
+        }
+    );
+
+
+
+    // عنوان
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+        "ویرایش محصول";
+
+
+
+    // دکمه
+
+    document.getElementById(
+        "formSubmitButton"
+    ).textContent =
+        "ذخیره تغییرات";
+
+
+
+    // نمایش لغو
+
+    cancelEditButton.style.display =
+        "block";
+
+
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+}
+
+
+
+// ==========================================
+// لغو ویرایش
+// ==========================================
+
+function cancelEdit() {
+
+
+    editingIndex =
+        -1;
+
+
+    selectedImages =
+        [];
+
+
+    productForm.reset();
+
+
+    imagePreview.innerHTML = `
+
+        <span>
+            هنوز عکسی انتخاب نشده
+        </span>
+
+    `;
+
+
+    document.getElementById(
+        "formTitle"
+    ).textContent =
+        "افزودن محصول جدید";
+
+
+    document.getElementById(
+        "formSubmitButton"
+    ).textContent =
+        "+ افزودن محصول";
+
+
+    cancelEditButton.style.display =
+        "none";
+
+}
+
+
+
+// ==========================================
+// دکمه لغو
+// ==========================================
+
+cancelEditButton.addEventListener(
+    "click",
+    function() {
+
+        cancelEdit();
+
+    }
+);
+
+
+
+// ==========================================
+// حذف محصول
+// ==========================================
+
+function deleteProduct(index) {
+
+
+    const product =
+        adminProducts[index];
+
+
+    if (!product) {
+
+        return;
+
+    }
+
+
+    const result =
+        confirm(
+
+            `آیا مطمئنی می‌خواهی «${product.name}» را حذف کنی؟`
+
+        );
+
+
+    if (!result) {
+
+        return;
+
+    }
+
+
+    adminProducts.splice(
+        index,
+        1
+    );
+
+
+    saveProducts();
+
+
+    renderAdminProducts();
+
+
+
+    if (
+        editingIndex === index
+    ) {
+
+        cancelEdit();
+
+    }
+
+}
+
+
+
+// ==========================================
+// ثبت فرم
+// ==========================================
+
+productForm.addEventListener(
+    "submit",
+    function(event) {
+
+
+        event.preventDefault();
+
+
+
+        // اطلاعات
+
+        const name =
+            document
+                .getElementById(
+                    "productName"
+                )
+                .value
+                .trim();
+
+
+        const price =
+            Number(
+                document
+                    .getElementById(
+                        "productPrice"
+                    )
+                    .value
+            );
+
+
+        const category =
+            document
+                .getElementById(
+                    "productCategory"
+                )
+                .value;
+
+
+        const description =
+            document
+                .getElementById(
+                    "productDescription"
+                )
+                .value
+                .trim();
+
+
+
+        // عکس‌ها
+
+        let finalImages =
+            selectedImages;
+
+
+
+        // اگر در حالت ویرایش هستیم
+        // و عکس جدید انتخاب نشده
+
+        if (
+
+            finalImages.length === 0 &&
+
+            editingIndex !== -1
+
+        ) {
+
+
+            finalImages =
+
+                adminProducts[
+                    editingIndex
+                ].images ||
+
+                [
+                    adminProducts[
+                        editingIndex
+                    ].image
+                ];
+
+        }
+
+
+
+        // بدون عکس
+
+        if (
+            finalImages.length === 0
+        ) {
+
+            alert(
+                "لطفاً حداقل یک عکس انتخاب کن."
+            );
+
+            return;
+
+        }
+
+
+
+        // محصول جدید
+
+        const productData = {
+
+            name:
+                name,
+
+            description:
+                description,
+
+            price:
+                price,
+
+            // عکس اصلی
+
+            image:
+                finalImages[0],
+
+            // همه عکس‌ها
+
+            images:
+                finalImages,
+
+            category:
+                category
+
+        };
+
+
+
+        // افزودن
+
+        if (
+            editingIndex === -1
+        ) {
+
+
+            adminProducts.push(
+                productData
+            );
+
+
+            alert(
+                "محصول با موفقیت اضافه شد ✅"
+            );
+
+        }
+
+
+
+        // ویرایش
+
+        else {
+
+
+            adminProducts[
+                editingIndex
+            ] =
+                productData;
+
+
+            alert(
+                "محصول با موفقیت ویرایش شد ✅"
+            );
+
+        }
+
+
+
+        // ذخیره
+
+        saveProducts();
+
+
+        // نمایش
+
+        renderAdminProducts();
+
+
+        // ریست
+
+        cancelEdit();
+
+    }
+);
+
+
+
+// ==========================================
+// شروع
+// ==========================================
+
+renderAdminProducts();
+
+
+</script>
+
+
+</body>
+
+</html>

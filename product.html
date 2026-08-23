@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>محصول | Tiam Wood Art</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+    <style>
+
+        /* ==========================================
+           PRODUCT GALLERY
+           ========================================== */
+
+        .product-gallery {
+            width: 100%;
+            min-width: 0;
+        }
+
+
+        .detail-image {
+            width: 100%;
+            height: 480px;
+
+            background: #f3ece4;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: relative;
+
+            border: 1px solid var(--border);
+
+            box-shadow:
+                0 12px 35px rgba(59, 36, 24, 0.08);
+        }
+
+
+        .detail-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+
+            display: block;
+
+            transition:
+                opacity .2s ease,
+                transform .3s ease;
+        }
+
+
+        .detail-image:hover img {
+            transform: scale(1.02);
+        }
+
+
+        /* ==========================================
+           THUMBNAILS
+           ========================================== */
+
+        .product-thumbnails {
+
+            display: flex;
+
+            gap: 12px;
+
+            margin-top: 14px;
+
+            overflow-x: auto;
+
+            padding: 3px 2px 8px;
+
+            scrollbar-width: thin;
+        }
+
+
+        .product-thumbnail {
+
+            flex: 0 0 78px;
+
+            width: 78px;
+            height: 78px;
+
+            padding: 0;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+
+            border: 2px solid transparent;
+
+            background: #f5eee7;
+
+            cursor: pointer;
+
+            transition:
+                .25s ease;
+
+            position: relative;
+        }
+
+
+        .product-thumbnail:hover {
+
+            transform: translateY(-2px);
+
+            border-color:
+                var(--wood-light);
+        }
+
+
+        .product-thumbnail.active {
+
+            border-color:
+                var(--wood);
+
+            box-shadow:
+                0 5px 15px rgba(59, 36, 24, .12);
+        }
+
+
+        .product-thumbnail img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+
+        /* ==========================================
+           PRODUCT DETAIL
+           ========================================== */
+
+        .product-detail {
+            background:
+                linear-gradient(
+                    180deg,
+                    #f8f3ed 0%,
+                    #f5eee7 100%
+                );
+
+            min-height: 700px;
+        }
+
+
+        .product-detail-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, 1.05fr)
+                minmax(0, .95fr);
+
+            gap: 65px;
+
+            align-items: center;
+
+            background: white;
+
+            padding: 38px;
+
+            border-radius: 24px;
+
+            border: 1px solid var(--border);
+
+            box-shadow:
+                0 20px 60px rgba(59, 36, 24, .08);
+        }
+
+
+        /* ==========================================
+           PRODUCT INFO
+           ========================================== */
+
+        .detail-info {
+            padding: 15px 5px;
+        }
+
+
+        .detail-info .product-category {
+
+            display: inline-block;
+
+            color: var(--wood-light);
+
+            background: #f8eee5;
+
+            padding: 5px 12px;
+
+            border-radius: 20px;
+
+            font-size: 12px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .detail-info h1 {
+
+            font-size:
+                clamp(28px, 4vw, 44px);
+
+            line-height: 1.4;
+
+            color:
+                var(--wood-dark);
+
+            margin:
+                8px 0 15px;
+        }
+
+
+        .detail-price {
+
+            font-size: 26px;
+
+            font-weight: 800;
+
+            color:
+                var(--wood);
+
+            margin-bottom: 20px;
+        }
+
+
+        .detail-description {
+
+            color: var(--gray);
+
+            font-size: 15px;
+
+            line-height: 2;
+
+            margin-bottom: 28px;
+        }
+
+
+        /* ==========================================
+           QUANTITY
+           ========================================== */
+
+        .detail-quantity {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 22px;
+
+            color: var(--gray);
+        }
+
+
+        .detail-quantity button {
+
+            width: 38px;
+            height: 38px;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                var(--cream);
+
+            color:
+                var(--wood-dark);
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-size: 20px;
+
+            transition: .2s;
+        }
+
+
+        .detail-quantity button:hover {
+
+            background:
+                var(--wood);
+
+            color: white;
+
+            border-color:
+                var(--wood);
+        }
+
+
+        .detail-quantity strong {
+
+            min-width: 35px;
+
+            text-align: center;
+
+            color:
+                var(--wood-dark);
+
+            font-size: 17px;
+        }
+
+
+        /* ==========================================
+           BUTTONS
+           ========================================== */
+
+        .detail-cart-button,
+        .detail-whatsapp-button {
+
+            width: 100%;
+
+            border: none;
+
+            padding: 14px 18px;
+
+            border-radius: 10px;
+
+            font-family: inherit;
+
+            cursor: pointer;
+
+            margin-top: 9px;
+
+            font-size: 14px;
+
+            transition:
+                .25s ease;
+        }
+
+
+        .detail-cart-button {
+
+            background:
+                var(--wood);
+
+            color: white;
+
+            box-shadow:
+                0 8px 20px rgba(123, 75, 42, .18);
+        }
+
+
+        .detail-cart-button:hover {
+
+            background:
+                var(--wood-dark);
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .detail-whatsapp-button {
+
+            background:
+                #25D366;
+
+            color: white;
+        }
+
+
+        .detail-whatsapp-button:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(37, 211, 102, .2);
+        }
+
+
+        /* ==========================================
+           NOT FOUND
+           ========================================== */
+
+        .not-found {
+
+            text-align: center;
+
+            padding:
+                100px 20px;
+
+            background: white;
+
+            border-radius: 20px;
+
+            border:
+                1px solid var(--border);
+        }
+
+
+        .not-found h2 {
+
+            color:
+                var(--wood-dark);
+
+            margin:
+                15px 0 8px;
+        }
+
+
+        .not-found p {
+
+            color:
+                var(--gray);
+        }
+
+
+        .not-found a {
+
+            display: inline-block;
+
+            margin-top: 20px;
+
+            color:
+                var(--wood);
+
+            font-weight: 600;
+        }
+
+
+        /* ==========================================
+           MOBILE
+           ========================================== */
+
+        @media (max-width: 800px) {
+
+            .product-detail {
+
+                padding:
+                    55px 0;
+            }
+
+
+            .product-detail-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 30px;
+
+                padding: 18px;
+
+                border-radius: 18px;
+            }
+
+
+            .detail-image {
+
+                height: 360px;
+
+                border-radius: 15px;
+            }
+
+
+            .product-thumbnails {
+
+                justify-content:
+                    flex-start;
+            }
+
+
+            .product-thumbnail {
+
+                flex-basis: 68px;
+
+                width: 68px;
+
+                height: 68px;
+            }
+
+
+            .detail-info {
+
+                padding:
+                    5px 2px;
+            }
+
+
+            .detail-info h1 {
+
+                font-size: 29px;
+            }
+
+
+            .detail-price {
+
+                font-size: 23px;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            .detail-image {
+
+                height: 300px;
+            }
+
+
+            .product-thumbnail {
+
+                flex-basis: 62px;
+
+                width: 62px;
+
+                height: 62px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="container nav">
+
+        <a
+            href="index.html"
+            class="logo">
+
+            <span>TIAM</span>
+
+            <small>
+                WOOD ART
+            </small>
+
+        </a>
+
+
+        <nav class="menu">
+
+            <a href="index.html">
+                خانه
+            </a>
+
+            <a href="index.html#products">
+                محصولات
+            </a>
+
+            <a href="index.html#about">
+                درباره ما
+            </a>
+
+            <a href="index.html#contact">
+                تماس با ما
+            </a>
+
+        </nav>
+
+
+        <a
+            href="index.html#products"
+            class="back-button">
+
+            ← بازگشت
+
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- ================= PRODUCT ================= -->
+
+<main>
+
+    <section class="product-detail">
+
+        <div class="container">
+
+            <div id="productDetail"></div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="container footer">
+
+        <div class="footer-logo">
+
+            TIAM
+
+            <span>
+                WOOD ART
+            </span>
+
+        </div>
+
+
+        <p>
+            ساخته شده با عشق و چوب 🌿
+        </p>
+
+
+        <p class="copyright">
+            © 2026 Tiam Wood Art
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<script>
+
+/* ==========================================
+   دریافت محصولات
+   ========================================== */
+
+const defaultProducts = [
+
+    {
+        name: "ساعت چوبی دست‌ساز",
+
+        description:
+            "ساخته شده از چوب طبیعی گردو",
+
+        price: 850000,
+
+        image:
+            "images/saat.jpg",
+
+        images: [
+            "images/saat.jpg"
+        ],
+
+        category:
+            "دکور چوبی"
+    },
+
+
+    {
+        name: "استند چوبی",
+
+        description:
+            "ساده، زیبا و کاربردی",
+
+        price: 320000,
+
+        image:
+            "images/stand.jpg",
+
+        images: [
+            "images/stand.jpg"
+        ],
+
+        category:
+            "لوازم کاربردی"
+    },
+
+
+    {
+        name: "باکس چوبی",
+
+        description:
+            "مناسب برای هدیه",
+
+        price: 650000,
+
+        image:
+            "images/box.jpg",
+
+        images: [
+            "images/box.jpg"
+        ],
+
+        category:
+            "هدیه"
+    }
+
+];
+
+
+let products =
+    JSON.parse(
+        localStorage.getItem("tiamProducts")
+    ) || defaultProducts;
+
+
+
+/* ==========================================
+   دریافت ID
+   ========================================== */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const productIndex =
+    parseInt(
+        params.get("id"),
+        10
+    );
+
+
+const product =
+    products[productIndex];
+
+
+const detail =
+    document.getElementById(
+        "productDetail"
+    );
+
+
+
+/* ==========================================
+   بررسی محصول
+   ========================================== */
+
+if (
+    product &&
+    detail
+) {
+
+    renderProduct();
+
+}
+
+else {
+
+    showNotFound();
+
+}
+
+
+
+/* ==========================================
+   نمایش محصول
+   ========================================== */
+
+function renderProduct() {
+
+    let productImages = [];
+
+
+    if (
+        Array.isArray(product.images)
+    ) {
+
+        productImages =
+            product.images.filter(
+                function(image) {
+
+                    return (
+                        typeof image === "string" &&
+                        image.trim() !== ""
+                    );
+
+                }
+            );
+
+    }
+
+
+    if (
+        productImages.length === 0 &&
+        product.image
+    ) {
+
+        productImages = [
+            product.image
+        ];
+
+    }
+
+
+    if (
+        productImages.length === 0
+    ) {
+
+        productImages = [
+            "images/no-image.jpg"
+        ];
+
+    }
+
+
+    detail.innerHTML = `
+
+        <div class="product-detail-grid">
+
+
+            <!-- GALLERY -->
+
+            <div class="product-gallery">
+
+
+                <div class="detail-image">
+
+                    <img
+                        id="mainProductImage"
+                        src="${productImages[0]}"
+                        alt="${product.name}"
+                    >
+
+                </div>
+
+
+                <div
+                    class="product-thumbnails"
+                    id="productThumbnails">
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- INFO -->
+
+            <div class="detail-info">
+
+
+                <span class="product-category">
+
+                    ${product.category || "محصول چوبی"}
+
+                </span>
+
+
+                <h1>
+
+                    ${product.name}
+
+                </h1>
+
+
+                <div class="detail-price">
+
+                    ${formatPrice(product.price)}
+                    تومان
+
+                </div>
+
+
+                <p class="detail-description">
+
+                    ${product.description ||
+                    "محصول دست‌ساز Tiam Wood Art"}
+
+                </p>
+
+
+                <div class="detail-quantity">
+
+                    <span>
+                        تعداد:
+                    </span>
+
+
+                    <button
+                        type="button"
+                        onclick="changeQuantity(-1)">
+
+                        −
+
+                    </button>
+
+
+                    <strong id="quantity">
+                        1
+                    </strong>
+
+
+                    <button
+                        type="button"
+                        onclick="changeQuantity(1)">
+
+                        +
+
+                    </button>
+
+                </div>
+
+
+                <button
+                    class="detail-cart-button"
+                    onclick="addToCart()">
+
+                    🛒 افزودن به سبد خرید
+
+                </button>
+
+
+                <button
+                    class="detail-whatsapp-button"
+                    onclick="orderWhatsApp()">
+
+                    📱 سفارش مستقیم در واتساپ
+
+                </button>
+
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    renderThumbnails(
+        productImages
+    );
+
+}
+
+
+
+/* ==========================================
+   Thumbnail ها
+   ========================================== */
+
+function renderThumbnails(images) {
+
+    const thumbnails =
+        document.getElementById(
+            "productThumbnails"
+        );
+
+
+    if (!thumbnails) {
+        return;
+    }
+
+
+    thumbnails.innerHTML = "";
+
+
+    if (
+        images.length <= 1
+    ) {
+
+        thumbnails.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    thumbnails.style.display =
+        "flex";
+
+
+    images.forEach(
+        function(image, index) {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+
+            button.className =
+                "product-thumbnail";
+
+
+            if (
+                index === 0
+            ) {
+
+                button.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            button.innerHTML = `
+
+                <img
+                    src="${image}"
+                    alt="${product.name}"
+                >
+
+            `;
+
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    changeMainImage(
+                        image,
+                        index
+                    );
+
+                }
+            );
+
+
+            thumbnails.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+
+/* ==========================================
+   تغییر عکس
+   ========================================== */
+
+function changeMainImage(
+    image,
+    index
+) {
+
+    const mainImage =
+        document.getElementById(
+            "mainProductImage"
+        );
+
+
+    if (!mainImage) {
+        return;
+    }
+
+
+    mainImage.style.opacity =
+        "0";
+
+
+    setTimeout(
+        function() {
+
+            mainImage.src =
+                image;
+
+            mainImage.style.opacity =
+                "1";
+
+        },
+        120
+    );
+
+
+    document
+        .querySelectorAll(
+            ".product-thumbnail"
+        )
+        .forEach(
+            function(thumbnail) {
+
+                thumbnail.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    const thumbnails =
+        document.querySelectorAll(
+            ".product-thumbnail"
+        );
+
+
+    if (
+        thumbnails[index]
+    ) {
+
+        thumbnails[index].classList.add(
+            "active"
+        );
+
+    }
+
+}
+
+
+
+/* ==========================================
+   قیمت
+   ========================================== */
+
+function formatPrice(price) {
+
+    return Number(
+        price || 0
+    ).toLocaleString(
+        "fa-IR"
+    );
+
+}
+
+
+
+/* ==========================================
+   تعداد
+   ========================================== */
+
+let quantity = 1;
+
+
+function changeQuantity(amount) {
+
+    quantity += amount;
+
+
+    if (
+        quantity < 1
+    ) {
+
+        quantity = 1;
+
+    }
+
+
+    const quantityElement =
+        document.getElementById(
+            "quantity"
+        );
+
+
+    if (quantityElement) {
+
+        quantityElement.textContent =
+            quantity;
+
+    }
+
+}
+
+
+
+/* ==========================================
+   افزودن به سبد
+   ========================================== */
+
+function addToCart() {
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem(
+                "tiamCart"
+            )
+        ) || [];
+
+
+    const existingProduct =
+        cart.find(
+            function(item) {
+
+                return (
+                    item.name ===
+                    product.name
+                );
+
+            }
+        );
+
+
+    if (
+        existingProduct
+    ) {
+
+        existingProduct.quantity +=
+            quantity;
+
+    }
+
+    else {
+
+        let productImages = [];
+
+
+        if (
+            Array.isArray(product.images) &&
+            product.images.length > 0
+        ) {
+
+            productImages =
+                product.images;
+
+        }
+
+        else if (
+            product.image
+        ) {
+
+            productImages = [
+                product.image
+            ];
+
+        }
+
+
+        cart.push({
+
+            name:
+                product.name,
+
+            description:
+                product.description || "",
+
+            price:
+                Number(product.price),
+
+            image:
+                product.image ||
+                productImages[0] ||
+                "",
+
+            images:
+                productImages,
+
+            category:
+                product.category || "",
+
+            quantity:
+                quantity
+
+        });
+
+    }
+
+
+    localStorage.setItem(
+        "tiamCart",
+        JSON.stringify(cart)
+    );
+
+
+    alert(
+        `${product.name} به تعداد ${quantity} عدد به سبد خرید اضافه شد 🛒`
+    );
+
+}
+
+
+
+/* ==========================================
+   سفارش واتساپ
+   ========================================== */
+
+function orderWhatsApp() {
+
+    const total =
+        Number(product.price) *
+        quantity;
+
+
+    const phoneNumber =
+        "989035668639";
+
+
+    let message =
+        "سلام، می‌خواهم این محصول را سفارش بدهم 🌿\n\n";
+
+
+    message +=
+        `🪵 محصول: ${product.name}\n`;
+
+
+    message +=
+        `🔢 تعداد: ${quantity}\n`;
+
+
+    message +=
+        `💰 مبلغ: ${formatPrice(total)} تومان\n`;
+
+
+    message +=
+        `📦 دسته‌بندی: ${product.category || "محصول چوبی"}\n`;
+
+
+    const whatsappURL =
+        `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+}
+
+
+
+/* ==========================================
+   محصول پیدا نشد
+   ========================================== */
+
+function showNotFound() {
+
+    detail.innerHTML = `
+
+        <div class="not-found">
+
+            <div style="font-size:60px;">
+                🔎
+            </div>
+
+            <h2>
+                محصول پیدا نشد
+            </h2>
+
+            <p>
+                این محصول ممکن است حذف شده باشد
+                یا لینک آن اشتباه باشد.
+            </p>
+
+            <a
+                href="index.html#products">
+
+                ← برگشت به محصولات
+
+            </a>
+
+        </div>
+
+    `;
+
+}
+
+</script>
+
+
+</body>
+
+</html>

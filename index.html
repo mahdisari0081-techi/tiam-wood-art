@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Tiam Wood Art | محصولات چوبی دست‌ساز</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+    <div class="container nav">
+
+        <a href="#" class="logo">
+            <span>TIAM</span>
+            <small>WOOD ART</small>
+
+            <div class="logo-wood">
+                <img src="images/wood-ring.png" alt="چوب">
+            </div>
+        </a>
+
+        <div class="top-search">
+            <div class="top-search-box">
+                <span class="search-icon">🔍</span>
+
+                <input
+                    type="text"
+                    id="topSearchInput"
+                    placeholder="جستجوی محصولات..."
+                >
+
+                <button class="search-clear" id="searchClear">
+                    ×
+                </button>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="#home">خانه</a>
+            <a href="#products">محصولات</a>
+            <a href="#about">درباره ما</a>
+            <a href="#contact">تماس با ما</a>
+        </nav>
+
+        <div class="nav-actions">
+            <button class="cart-button">🛒</button>
+            <button class="menu-button">☰</button>
+        </div>
+
+    </div>
+</header>
+<!-- ================= SEARCH BAR ================= -->
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-image-bg">
+        <img src="images/hero.jpg" alt="Tiam Wood Art">
+    </div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="container hero-content">
+
+        <div class="hero-text">
+
+            <span class="eyebrow">
+                هنر دست، زیبایی ماندگار
+            </span>
+
+            <h1>
+                ساخته شده با
+                <strong>عشق و چوب</strong>
+            </h1>
+
+            <p>
+                محصولات چوبی دست‌ساز با طراحی خاص،
+                ساخته‌شده با دقت و عشق.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a
+                    href="#products"
+                    class="btn primary">
+
+                    مشاهده محصولات
+
+                </a>
+
+                <a
+                    href="#about"
+                    class="btn secondary">
+
+                    درباره ما
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CATEGORIES
+===================================================== -->
+
+
+<section class="categories" id="categories">
+
+    <div class="container">
+
+        <div class="section-title">
+            <span>انتخاب کنید</span>
+
+            <h2>دسته‌بندی محصولات</h2>
+
+            <p>
+                دسته‌بندی و نحوه نمایش محصولات را انتخاب کنید.
+            </p>
+        </div>
+
+        <div class="category-toolbar">
+
+            <div class="category-buttons">
+
+                <button class="category-button active" data-category="all">
+                    همه محصولات
+                </button>
+
+                <button class="category-button" data-category="decor">
+                    🪵 دکور چوبی
+                </button>
+
+                <button class="category-button" data-category="useful">
+                    🏠 لوازم کاربردی
+                </button>
+
+                <button class="category-button" data-category="gift">
+                    🎁 هدیه
+                </button>
+
+            </div>
+
+
+            <div class="sort-box">
+
+                <span>مرتب‌سازی:</span>
+
+                <select id="sortProducts">
+    <option value="newest">جدیدترین</option>
+    <option value="price-low">ارزان‌ترین</option>
+    <option value="price-high">گران‌ترین</option>
+    <option value="name">الفبایی</option>
+</select>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     PRODUCTS
+===================================================== -->
+
+
+
+
+
+           
+
+
+           
+        <!-- PRODUCT LIST -->
+
+        <div
+            class="product-grid"
+            id="productList">
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section
+    class="about"
+    id="about">
+
+
+    <div class="container about-content">
+
+
+        <div class="about-image">
+
+            <div class="about-logo">
+
+                TIAM
+
+                <span>
+                    WOOD ART
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="about-text">
+
+
+            <span class="eyebrow">
+                درباره ما
+            </span>
+
+
+            <h2>
+
+                چوب،
+                <strong>
+                    داستان طبیعت است.
+                </strong>
+
+            </h2>
+
+
+            <p>
+
+                در Tiam Wood Art تلاش می‌کنیم
+                زیبایی طبیعی چوب را با هنر دست
+                ترکیب کنیم و محصولاتی خاص و
+                ماندگار بسازیم.
+
+            </p>
+
+
+            <p>
+
+                هر قطعه با دقت ساخته می‌شود تا
+                علاوه بر زیبایی، حس گرمی و
+                طبیعی بودن چوب را به خانه شما
+                بیاورد.
+
+            </p>
+
+
+            <a
+                href="#products"
+                class="btn primary">
+
+                مشاهده محصولات
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section
+    class="contact"
+    id="contact">
+
+
+    <div class="container">
+
+
+        <div class="contact-box">
+
+
+            <div>
+
+
+                <span>
+                    ارتباط با ما
+                </span>
+
+
+                <h2>
+                    محصول موردنظرت رو پیدا کردی؟
+                </h2>
+
+
+                <p>
+                    برای سفارش یا دریافت اطلاعات بیشتر
+                    با ما در ارتباط باش.
+                </p>
+
+
+            </div>
+
+
+
+            <div class="contact-buttons">
+
+
+                <a
+                    href="https://wa.me/989035668639"
+                    target="_blank"
+                    class="contact-btn">
+
+                    📱 واتساپ
+
+                </a>
+
+
+                <a
+                    href="index.html#products"
+                    class="contact-btn">
+
+                    🛍 مشاهده محصولات
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     CART MODAL
+===================================================== -->
+
+<div
+    class="cart-modal"
+    id="cartModal">
+
+
+    <div class="cart-box">
+
+
+        <button
+            class="cart-close"
+            onclick="closeCart()">
+
+            ×
+
+        </button>
+
+
+        <h2>
+            🛒 سبد خرید
+        </h2>
+
+
+        <div id="cartItems">
+
+        </div>
+
+
+        <div class="cart-total">
+
+
+            <span>
+                مبلغ کل
+            </span>
+
+
+            <strong id="cartTotal">
+                0 تومان
+            </strong>
+
+
+        </div>
+
+
+        <button
+            class="checkout-button"
+            onclick="checkout()">
+
+            ادامه و ثبت سفارش
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     CHECKOUT MODAL
+===================================================== -->
+
+<div
+    class="checkout-modal"
+    id="checkoutModal">
+
+
+    <div class="checkout-box">
+
+
+        <button
+            class="checkout-close"
+            onclick="closeCheckout()">
+
+            ×
+
+        </button>
+
+
+        <h2>
+            ثبت سفارش
+        </h2>
+
+
+        <p class="checkout-subtitle">
+
+            اطلاعات زیر را وارد کنید تا
+            سفارش شما از طریق واتساپ ارسال شود.
+
+        </p>
+
+
+
+        <form id="checkoutForm">
+
+
+            <label for="customerName">
+
+                نام و نام خانوادگی
+
+            </label>
+
+
+            <input
+                type="text"
+                id="customerName"
+                placeholder="مثلاً مهدی محمدی"
+                required>
+
+
+
+            <label for="customerPhone">
+
+                شماره تماس
+
+            </label>
+
+
+            <input
+                type="tel"
+                id="customerPhone"
+                placeholder="مثلاً 09123456789"
+                required>
+
+
+
+            <label for="customerAddress">
+
+                آدرس
+
+                <span>
+                    برای ارسال سفارش
+                </span>
+
+            </label>
+
+
+            <textarea
+                id="customerAddress"
+                rows="4"
+                placeholder="آدرس کامل خود را وارد کنید..."
+                required></textarea>
+
+
+
+            <label for="customerNote">
+
+                توضیحات
+
+                <span>
+                    اختیاری
+                </span>
+
+            </label>
+
+
+            <textarea
+                id="customerNote"
+                rows="3"
+                placeholder="اگر توضیح خاصی دارید بنویسید..."></textarea>
+
+
+
+            <div class="checkout-summary">
+
+
+                <span>
+                    مبلغ سفارش
+                </span>
+
+
+                <strong id="checkoutTotal">
+                    0 تومان
+                </strong>
+
+
+            </div>
+
+
+
+            <button
+                type="submit"
+                class="send-order-button">
+
+                📱 ارسال سفارش در واتساپ
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MESSAGE
+===================================================== -->
+
+<div
+    class="message"
+    id="message">
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+
+    <div class="container footer">
+
+
+        <div class="footer-logo">
+
+            TIAM
+
+            <span>
+                WOOD ART
+            </span>
+
+        </div>
+
+
+        <p>
+            ساخته شده با عشق و چوب 🌿
+        </p>
+
+
+        <p>
+            © 2026 Tiam Wood Art
+        </p>
+
+
+    </div>
+
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+
+
+
+</body>
+<script src="script.js"></script>
+</html>
