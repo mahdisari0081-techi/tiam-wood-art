@@ -51,21 +51,61 @@ const defaultProducts = [
 
 let products = [];
 
-try {
 
-    products =
-        JSON.parse(
-            localStorage.getItem("tiamProducts")
-        ) || defaultProducts;
+// ==========================================
+// دریافت محصولات از Supabase
+// ==========================================
 
-} catch (error) {
+async function loadProducts() {
 
-    console.error(
-        "خطا در دریافت محصولات:",
-        error
-    );
+    try {
 
-    products = defaultProducts;
+        const {
+            data,
+            error
+        } = await supabaseClient
+            .from("products")
+            .select("*")
+            .order("id", {
+                ascending: false
+            });
+
+
+        if (error) {
+
+            console.error(
+                "خطا در دریافت محصولات:",
+                error
+            );
+
+            products = defaultProducts;
+
+            renderProducts();
+
+            return;
+
+        }
+
+
+        products = data || [];
+
+
+        renderProducts();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "خطای اتصال به Supabase:",
+            error
+        );
+
+        products = defaultProducts;
+
+        renderProducts();
+
+    }
 
 }
 
@@ -1691,6 +1731,6 @@ document.addEventListener(
 // شروع
 // ==========================================
 
-renderProducts();
+loadProducts();
 
 updateCart();
