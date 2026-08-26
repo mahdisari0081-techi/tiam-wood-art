@@ -17,55 +17,432 @@
         rel="stylesheet"
         href="style.css">
 
+    <style>
+
+        /* ==========================================
+           LOGIN
+        ========================================== */
+
+        .admin-login {
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 70px 20px;
+            background: #f8f3ed;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 430px;
+            background: white;
+            padding: 35px;
+            border-radius: 22px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 60px rgba(59, 36, 24, .08);
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .login-logo strong {
+            display: block;
+            color: var(--wood-dark);
+            font-size: 30px;
+            letter-spacing: 2px;
+        }
+
+        .login-logo span {
+            color: var(--wood-light);
+            font-size: 12px;
+            letter-spacing: 3px;
+        }
+
+        .login-box h1 {
+            text-align: center;
+            color: var(--wood-dark);
+            font-size: 23px;
+            margin-bottom: 25px;
+        }
+
+        .login-box label {
+            display: block;
+            margin: 14px 0 7px;
+            color: var(--wood-dark);
+            font-weight: 600;
+        }
+
+        .login-box input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 13px 14px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .login-box input:focus {
+            border-color: var(--wood);
+        }
+
+        .login-button {
+            width: 100%;
+            margin-top: 22px;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: var(--wood);
+            color: white;
+            font-family: inherit;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .login-button:hover {
+            background: var(--wood-dark);
+        }
+
+        .login-error {
+            display: none;
+            background: #fff0f0;
+            color: #b42318;
+            padding: 11px;
+            border-radius: 9px;
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+
+        /* ==========================================
+           ADMIN HEADER
+        ========================================== */
+
+        .admin-top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .admin-user {
+            color: var(--gray);
+            font-size: 13px;
+        }
+
+        .logout-button {
+            border: 1px solid var(--border);
+            background: white;
+            color: var(--wood-dark);
+            padding: 9px 15px;
+            border-radius: 9px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .logout-button:hover {
+            background: #f8eee5;
+        }
+
+
+        /* ==========================================
+           IMAGE PREVIEW
+        ========================================== */
+
+        .image-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 12px;
+            min-height: 100px;
+            padding: 10px;
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            background: #faf7f3;
+        }
+
+        .image-preview:has(span) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .admin-help-text {
+            color: var(--gray);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .upload-status {
+            margin-top: 10px;
+            color: var(--wood);
+            font-size: 13px;
+            display: none;
+        }
+
+
+        /* ==========================================
+           ADMIN PRODUCT
+        ========================================== */
+
+        .admin-product {
+            display: grid;
+            grid-template-columns: 110px 1fr auto;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .admin-product img {
+            width: 110px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .admin-product-info h3 {
+            margin: 0 0 7px;
+            color: var(--wood-dark);
+        }
+
+        .admin-product-info p {
+            margin: 0 0 8px;
+            color: var(--gray);
+            font-size: 13px;
+        }
+
+        .admin-product-info strong {
+            display: block;
+            color: var(--wood);
+            margin-bottom: 6px;
+        }
+
+        .admin-product-info span,
+        .admin-product-info small {
+            display: inline-block;
+            margin-left: 8px;
+            color: var(--gray);
+            font-size: 12px;
+        }
+
+        .admin-product-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .admin-product-actions button {
+            border: none;
+            padding: 9px 14px;
+            border-radius: 8px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        .edit-product {
+            background: #f1e5d9;
+            color: var(--wood-dark);
+        }
+
+        .delete-product {
+            background: #fff0f0;
+            color: #b42318;
+        }
+
+        .admin-loading {
+            text-align: center;
+            padding: 30px;
+            color: var(--gray);
+        }
+
+        .admin-message {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            background: var(--wood-dark);
+            color: white;
+            padding: 13px 18px;
+            border-radius: 10px;
+            z-index: 9999;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: .25s ease;
+        }
+
+        .admin-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cancel-edit-button {
+            display: none;
+        }
+
+
+        @media (max-width: 700px) {
+
+            .admin-product {
+                grid-template-columns: 80px 1fr;
+            }
+
+            .admin-product img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .admin-product-actions {
+                grid-column: 1 / -1;
+                flex-direction: row;
+            }
+
+            .admin-product-actions button {
+                flex: 1;
+            }
+
+            .image-preview {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+    </style>
+
 </head>
 
 
 <body>
 
 
-<!-- ================= HEADER ================= -->
+<!-- =====================================================
+     LOGIN
+===================================================== -->
 
-<header class="header">
+<section
+    class="admin-login"
+    id="loginSection">
 
-    <div class="container nav">
+    <div class="login-box">
 
-        <a
-            href="index.html"
-            class="logo">
+        <div class="login-logo">
+
+            <strong>
+                TIAM
+            </strong>
 
             <span>
-                TIAM
+                WOOD ART
             </span>
 
-            <small>
-                WOOD ART
-            </small>
-
-        </a>
+        </div>
 
 
-        <a
-            href="index.html"
-            class="back-button">
+        <h1>
+            ورود به مدیریت فروشگاه
+        </h1>
 
-            ← بازگشت به فروشگاه
 
-        </a>
+        <form id="loginForm">
+
+            <label for="loginEmail">
+                ایمیل
+            </label>
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="ایمیل ادمین"
+                autocomplete="email"
+                required>
+
+
+            <label for="loginPassword">
+                رمز عبور
+            </label>
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="رمز عبور"
+                autocomplete="current-password"
+                required>
+
+
+            <button
+                type="submit"
+                class="login-button"
+                id="loginButton">
+
+                ورود به پنل
+
+            </button>
+
+
+            <div
+                class="login-error"
+                id="loginError">
+
+            </div>
+
+        </form>
 
     </div>
 
-</header>
+</section>
 
 
 
-<!-- ================= ADMIN ================= -->
+<!-- =====================================================
+     ADMIN
+===================================================== -->
 
-<main class="admin-page">
+<main
+    class="admin-page"
+    id="adminSection"
+    style="display:none;">
 
     <div class="container">
 
 
-        <!-- عنوان -->
+        <!-- HEADER -->
+
+        <div class="admin-top-bar">
+
+            <div>
+
+                <div class="admin-user">
+                    وارد شده به عنوان:
+                    <strong id="adminEmail">
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="logout-button"
+                id="logoutButton">
+
+                خروج از حساب
+
+            </button>
+
+        </div>
+
+
+
+        <!-- TITLE -->
 
         <div class="admin-title">
 
@@ -85,10 +462,9 @@
 
 
 
-        <!-- ================= FORM ================= -->
+        <!-- FORM -->
 
         <div class="admin-form-box">
-
 
             <h2 id="formTitle">
                 افزودن محصول جدید
@@ -127,7 +503,7 @@
 
 
 
-                <!-- دسته بندی -->
+                <!-- دسته -->
 
                 <label for="productCategory">
                     دسته‌بندی
@@ -152,17 +528,20 @@
 
 
 
-                <!-- ================= عکس‌ها ================= -->
+                <!-- عکس -->
 
-                <label>
+                <label for="productImageFiles">
                     عکس‌های محصول
                 </label>
-
 
                 <p class="admin-help-text">
 
                     حداکثر ۶ عکس انتخاب کن.
-                    عکس اول به‌عنوان عکس اصلی محصول استفاده می‌شود.
+                    عکس اول عکس اصلی محصول خواهد بود.
+
+                    <br>
+
+                    حداکثر حجم هر عکس: ۵ مگابایت
 
                 </p>
 
@@ -174,8 +553,6 @@
                     multiple>
 
 
-                <!-- پیش نمایش -->
-
                 <div
                     id="imagePreview"
                     class="image-preview">
@@ -183,6 +560,13 @@
                     <span>
                         هنوز عکسی انتخاب نشده
                     </span>
+
+                </div>
+
+
+                <div
+                    id="uploadStatus"
+                    class="upload-status">
 
                 </div>
 
@@ -226,17 +610,15 @@
 
                 </button>
 
-
             </form>
 
         </div>
 
 
 
-        <!-- ================= PRODUCTS ================= -->
+        <!-- PRODUCTS -->
 
         <div class="admin-products-box">
-
 
             <h2>
                 محصولات فعلی
@@ -246,11 +628,13 @@
             <div
                 id="adminProductList">
 
+                <div class="admin-loading">
+                    در حال دریافت محصولات...
+                </div>
+
             </div>
 
-
         </div>
-
 
     </div>
 
@@ -258,12 +642,13 @@
 
 
 
-<!-- ================= FOOTER ================= -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
     <div class="container footer">
-
 
         <div class="footer-logo">
 
@@ -285,349 +670,553 @@
             © 2026 Tiam Wood Art
         </p>
 
-
     </div>
 
 </footer>
 
 
 
-<!-- ================= JAVASCRIPT ================= -->
+<!-- MESSAGE -->
+
+<div
+    class="admin-message"
+    id="adminMessage">
+
+</div>
+
+
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <script>
 
+/* =====================================================
+   SUPABASE CONFIG
+===================================================== */
 
-// ==========================================
-// محصولات پیش‌فرض
-// ==========================================
+const SUPABASE_URL =
+    "https://qdmmnljrlzntienifdbw.supabase.co";
 
-const defaultProducts = [
-
-    {
-
-        name:
-            "ساعت چوبی دست‌ساز",
-
-        description:
-            "ساخته شده از چوب طبیعی گردو",
-
-        price:
-            850000,
-
-        image:
-            "images/saat.jpg",
-
-        images:
-            [
-                "images/saat.jpg"
-            ],
-
-        category:
-            "دکور چوبی"
-
-    },
+const SUPABASE_KEY =
+    "sb_publishable_kSIhcCNX6KZuNt3ixRwQZA_k65HH_vj";
 
 
-    {
-
-        name:
-            "استند چوبی",
-
-        description:
-            "ساده، زیبا و کاربردی",
-
-        price:
-            320000,
-
-        image:
-            "images/stand.jpg",
-
-        images:
-            [
-                "images/stand.jpg"
-            ],
-
-        category:
-            "لوازم کاربردی"
-
-    },
+const {
+    createClient
+} = supabase;
 
 
-    {
-
-        name:
-            "باکس چوبی",
-
-        description:
-            "مناسب برای هدیه",
-
-        price:
-            650000,
-
-        image:
-            "images/box.jpg",
-
-        images:
-            [
-                "images/box.jpg"
-            ],
-
-        category:
-            "هدیه"
-
-    }
-
-];
-
-
-
-// ==========================================
-// دریافت محصولات
-// ==========================================
-
-let adminProducts =
-    JSON.parse(
-        localStorage.getItem(
-            "tiamProducts"
-        )
+const db =
+    createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
     );
 
 
-// اگر وجود نداشت
 
-if (!adminProducts) {
+/* =====================================================
+   VARIABLES
+===================================================== */
 
-    adminProducts =
-        defaultProducts;
+let adminProducts = [];
 
-    saveProducts();
+let editingId = null;
 
-}
-
-
-
-// ==========================================
-// حالت ویرایش
-// ==========================================
-
-let editingIndex = -1;
-
-
-// عکس‌های انتخاب شده
-
-let selectedImages = [];
+let selectedFiles = [];
 
 
 
-// ==========================================
-// ذخیره محصولات
-// ==========================================
+/* =====================================================
+   ELEMENTS
+===================================================== */
 
-function saveProducts() {
-
-    localStorage.setItem(
-
-        "tiamProducts",
-
-        JSON.stringify(
-            adminProducts
-        )
-
+const loginSection =
+    document.getElementById(
+        "loginSection"
     );
 
-}
+const adminSection =
+    document.getElementById(
+        "adminSection"
+    );
 
+const loginForm =
+    document.getElementById(
+        "loginForm"
+    );
 
+const loginButton =
+    document.getElementById(
+        "loginButton"
+    );
 
-// ==========================================
-// المنت‌ها
-// ==========================================
+const loginError =
+    document.getElementById(
+        "loginError"
+    );
+
+const logoutButton =
+    document.getElementById(
+        "logoutButton"
+    );
+
+const adminEmail =
+    document.getElementById(
+        "adminEmail"
+    );
 
 const productForm =
     document.getElementById(
         "productForm"
     );
 
-
 const imageFileInput =
     document.getElementById(
         "productImageFiles"
     );
-
 
 const imagePreview =
     document.getElementById(
         "imagePreview"
     );
 
+const uploadStatus =
+    document.getElementById(
+        "uploadStatus"
+    );
+
+const productList =
+    document.getElementById(
+        "adminProductList"
+    );
 
 const cancelEditButton =
     document.getElementById(
         "cancelEditButton"
     );
 
+const formTitle =
+    document.getElementById(
+        "formTitle"
+    );
 
-
-// ==========================================
-// انتخاب چند عکس
-// ==========================================
-
-imageFileInput.addEventListener(
-    "change",
-    function() {
-
-
-        const files =
-            Array.from(
-                this.files
-            );
-
-
-        if (
-            files.length === 0
-        ) {
-
-            return;
-
-        }
-
-
-        // حداکثر ۶ عکس
-
-        if (
-            files.length > 6
-        ) {
-
-            alert(
-                "حداکثر ۶ عکس می‌توانی انتخاب کنی."
-            );
-
-            this.value = "";
-
-            return;
-
-        }
-
-
-        selectedImages = [];
-
-
-        imagePreview.innerHTML = "";
+const formSubmitButton =
+    document.getElementById(
+        "formSubmitButton"
+    );
 
 
 
-        files.forEach(
-            function(file) {
+/* =====================================================
+   MESSAGE
+===================================================== */
 
+function showMessage(message) {
 
-                // بررسی نوع فایل
-
-                if (
-                    !file.type.startsWith(
-                        "image/"
-                    )
-                ) {
-
-                    alert(
-                        `${file.name} عکس نیست.`
-                    );
-
-                    return;
-
-                }
-
-
-
-                // حداکثر ۵ مگابایت
-
-                if (
-                    file.size >
-                    5 * 1024 * 1024
-                ) {
-
-                    alert(
-                        `${file.name} بیشتر از ۵ مگابایت است.`
-                    );
-
-                    return;
-
-                }
-
-
-
-                const reader =
-                    new FileReader();
-
-
-
-                reader.onload =
-                    function(event) {
-
-
-                        selectedImages.push(
-
-                            event.target.result
-
-                        );
-
-
-
-                        const img =
-                            document.createElement(
-                                "img"
-                            );
-
-
-                        img.src =
-                            event.target.result;
-
-
-                        img.alt =
-                            "پیش‌نمایش محصول";
-
-
-                        imagePreview.appendChild(
-                            img
-                        );
-
-                    };
-
-
-
-                reader.readAsDataURL(
-                    file
-                );
-
-            }
+    const box =
+        document.getElementById(
+            "adminMessage"
         );
+
+    if (!box) {
+        return;
+    }
+
+    box.textContent =
+        message;
+
+    box.classList.add(
+        "show"
+    );
+
+    setTimeout(
+        function() {
+
+            box.classList.remove(
+                "show"
+            );
+
+        },
+        3000
+    );
+
+}
+
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHtml(value) {
+
+    return String(
+        value ?? ""
+    )
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+
+/* =====================================================
+   FORMAT PRICE
+===================================================== */
+
+function formatPrice(price) {
+
+    return Number(
+        price || 0
+    ).toLocaleString(
+        "fa-IR"
+    );
+
+}
+
+
+
+/* =====================================================
+   CHECK SESSION
+===================================================== */
+
+async function checkSession() {
+
+    const {
+        data,
+        error
+    } =
+        await db.auth.getSession();
+
+
+    if (error) {
+
+        console.error(error);
+
+        showLogin();
+
+        return;
+
+    }
+
+
+    if (
+        data &&
+        data.session
+    ) {
+
+        showAdmin(
+            data.session.user
+        );
+
+    }
+
+    else {
+
+        showLogin();
+
+    }
+
+}
+
+
+
+/* =====================================================
+   SHOW LOGIN
+===================================================== */
+
+function showLogin() {
+
+    loginSection.style.display =
+        "flex";
+
+    adminSection.style.display =
+        "none";
+
+}
+
+
+
+/* =====================================================
+   SHOW ADMIN
+===================================================== */
+
+async function showAdmin(user) {
+
+    loginSection.style.display =
+        "none";
+
+    adminSection.style.display =
+        "block";
+
+
+    if (adminEmail) {
+
+        adminEmail.textContent =
+            user.email || "";
+
+    }
+
+
+    await loadProducts();
+
+}
+
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+loginForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        loginError.style.display =
+            "none";
+
+
+        const email =
+            document
+                .getElementById(
+                    "loginEmail"
+                )
+                .value
+                .trim();
+
+
+        const password =
+            document
+                .getElementById(
+                    "loginPassword"
+                )
+                .value;
+
+
+        loginButton.disabled =
+            true;
+
+        loginButton.textContent =
+            "در حال ورود...";
+
+
+        const {
+            data,
+            error
+        } =
+            await db.auth.signInWithPassword({
+
+                email:
+                    email,
+
+                password:
+                    password
+
+            });
+
+
+        loginButton.disabled =
+            false;
+
+        loginButton.textContent =
+            "ورود به پنل";
+
+
+        if (error) {
+
+            console.error(error);
+
+            loginError.textContent =
+                "ایمیل یا رمز عبور اشتباه است.";
+
+            loginError.style.display =
+                "block";
+
+            return;
+
+        }
+
+
+        if (
+            data &&
+            data.user
+        ) {
+
+            loginForm.reset();
+
+            showAdmin(
+                data.user
+            );
+
+        }
 
     }
 );
 
 
 
-// ==========================================
-// نمایش محصولات
-// ==========================================
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+logoutButton.addEventListener(
+    "click",
+    async function() {
+
+        const {
+            error
+        } =
+            await db.auth.signOut();
+
+
+        if (error) {
+
+            console.error(error);
+
+            showMessage(
+                "خطا در خروج از حساب"
+            );
+
+            return;
+
+        }
+
+
+        cancelEdit();
+
+        showLogin();
+
+    }
+);
+
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+db.auth.onAuthStateChange(
+    function(
+        event,
+        session
+    ) {
+
+        if (
+            event === "SIGNED_IN" &&
+            session
+        ) {
+
+            showAdmin(
+                session.user
+            );
+
+        }
+
+
+        if (
+            event === "SIGNED_OUT"
+        ) {
+
+            showLogin();
+
+        }
+
+    }
+);
+
+
+
+/* =====================================================
+   LOAD PRODUCTS
+===================================================== */
+
+async function loadProducts() {
+
+    productList.innerHTML = `
+
+        <div class="admin-loading">
+
+            در حال دریافت محصولات...
+
+        </div>
+
+    `;
+
+
+    const {
+        data,
+        error
+    } =
+        await db
+            .from("products")
+            .select("*")
+            .order(
+                "created_at",
+                {
+                    ascending: false
+                }
+            );
+
+
+    if (error) {
+
+        console.error(error);
+
+        productList.innerHTML = `
+
+            <div class="admin-loading">
+
+                خطا در دریافت محصولات.
+
+                <br><br>
+
+                ${escapeHtml(error.message)}
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    adminProducts =
+        data || [];
+
+
+    renderAdminProducts();
+
+}
+
+
+
+/* =====================================================
+   RENDER PRODUCTS
+===================================================== */
 
 function renderAdminProducts() {
 
-
-    const list =
-        document.getElementById(
-            "adminProductList"
-        );
-
-
-    list.innerHTML = "";
-
+    productList.innerHTML =
+        "";
 
 
     if (
         adminProducts.length === 0
     ) {
 
-        list.innerHTML = `
+        productList.innerHTML = `
 
             <div class="empty-admin">
 
@@ -642,10 +1231,8 @@ function renderAdminProducts() {
     }
 
 
-
     adminProducts.forEach(
-        function(product, index) {
-
+        function(product) {
 
             const item =
                 document.createElement(
@@ -657,54 +1244,64 @@ function renderAdminProducts() {
                 "admin-product";
 
 
+            const images =
+                Array.isArray(
+                    product.images
+                )
+                    ? product.images
+                    : product.image
+                        ? [product.image]
+                        : [];
+
+
+            const image =
+                product.image ||
+                images[0] ||
+                "images/no-image.jpg";
+
 
             item.innerHTML = `
 
                 <img
-                    src="${product.image}"
-                    alt="${product.name}">
+                    src="${escapeHtml(image)}"
+                    alt="${escapeHtml(product.name)}"
+                >
 
 
                 <div
                     class="admin-product-info">
 
                     <h3>
-                        ${product.name}
+                        ${escapeHtml(product.name)}
                     </h3>
 
 
                     <p>
-                        ${product.description}
+                        ${escapeHtml(product.description)}
                     </p>
 
 
                     <strong>
 
-                        ${Number(
-                            product.price
-                        ).toLocaleString(
-                            "fa-IR"
-                        )}
-
+                        ${formatPrice(product.price)}
                         تومان
 
                     </strong>
 
 
                     <span>
-                        ${product.category}
+
+                        ${escapeHtml(
+                            product.category ||
+                            "محصول چوبی"
+                        )}
+
                     </span>
 
 
                     <small>
 
-                        ${
-                            (
-                                product.images ||
-                                [product.image]
-                            ).length
-                        }
-
+                        ${images.length}
                         عکس
 
                     </small>
@@ -714,7 +1311,6 @@ function renderAdminProducts() {
 
                 <div
                     class="admin-product-actions">
-
 
                     <button
                         type="button"
@@ -733,14 +1329,10 @@ function renderAdminProducts() {
 
                     </button>
 
-
                 </div>
 
             `;
 
-
-
-            // ویرایش
 
             item
                 .querySelector(
@@ -750,14 +1342,13 @@ function renderAdminProducts() {
                     "click",
                     function() {
 
-                        editProduct(index);
+                        editProduct(
+                            product
+                        );
 
                     }
                 );
 
-
-
-            // حذف
 
             item
                 .querySelector(
@@ -767,14 +1358,15 @@ function renderAdminProducts() {
                     "click",
                     function() {
 
-                        deleteProduct(index);
+                        deleteProduct(
+                            product
+                        );
 
                     }
                 );
 
 
-
-            list.appendChild(
+            productList.appendChild(
                 item
             );
 
@@ -785,73 +1377,174 @@ function renderAdminProducts() {
 
 
 
-// ==========================================
-// ویرایش محصول
-// ==========================================
+/* =====================================================
+   IMAGE SELECT
+===================================================== */
 
-function editProduct(index) {
+imageFileInput.addEventListener(
+    "change",
+    function() {
+
+        const files =
+            Array.from(
+                this.files || []
+            );
 
 
-    const product =
-        adminProducts[index];
+        if (
+            files.length === 0
+        ) {
+
+            selectedFiles = [];
+
+            return;
+
+        }
 
 
-    if (!product) {
+        if (
+            files.length > 6
+        ) {
+
+            alert(
+                "حداکثر ۶ عکس می‌توانی انتخاب کنی."
+            );
+
+            this.value = "";
+
+            selectedFiles = [];
+
+            return;
+
+        }
+
+
+        const invalidFile =
+            files.find(
+                function(file) {
+
+                    return (
+                        !file.type.startsWith(
+                            "image/"
+                        ) ||
+                        file.size >
+                        5 * 1024 * 1024
+                    );
+
+                }
+            );
+
+
+        if (invalidFile) {
+
+            alert(
+                `${invalidFile.name} معتبر نیست یا بیشتر از ۵ مگابایت است.`
+            );
+
+            this.value = "";
+
+            selectedFiles = [];
+
+            return;
+
+        }
+
+
+        selectedFiles =
+            files;
+
+
+        showFilePreviews(
+            files
+        );
+
+    }
+);
+
+
+
+/* =====================================================
+   SHOW FILE PREVIEWS
+===================================================== */
+
+function showFilePreviews(files) {
+
+    imagePreview.innerHTML =
+        "";
+
+
+    files.forEach(
+        function(file) {
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function(event) {
+
+                    const img =
+                        document.createElement(
+                            "img"
+                        );
+
+
+                    img.src =
+                        event.target.result;
+
+
+                    img.alt =
+                        "پیش‌نمایش محصول";
+
+
+                    imagePreview.appendChild(
+                        img
+                    );
+
+                };
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   SHOW EXISTING IMAGES
+===================================================== */
+
+function showExistingImages(images) {
+
+    imagePreview.innerHTML =
+        "";
+
+
+    if (
+        !images ||
+        images.length === 0
+    ) {
+
+        imagePreview.innerHTML = `
+
+            <span>
+                هنوز عکسی انتخاب نشده
+            </span>
+
+        `;
 
         return;
 
     }
 
 
-    editingIndex =
-        index;
-
-
-
-    // اطلاعات فرم
-
-    document.getElementById(
-        "productName"
-    ).value =
-        product.name;
-
-
-    document.getElementById(
-        "productPrice"
-    ).value =
-        product.price;
-
-
-    document.getElementById(
-        "productCategory"
-    ).value =
-        product.category;
-
-
-    document.getElementById(
-        "productDescription"
-    ).value =
-        product.description;
-
-
-
-    // عکس‌ها
-
-    selectedImages =
-        product.images ||
-        [
-            product.image
-        ];
-
-
-
-    imagePreview.innerHTML = "";
-
-
-
-    selectedImages.forEach(
-        function(image) {
-
+    images.forEach(
+        function(url) {
 
             const img =
                 document.createElement(
@@ -860,11 +1553,11 @@ function editProduct(index) {
 
 
             img.src =
-                image;
+                url;
 
 
             img.alt =
-                product.name;
+                "عکس محصول";
 
 
             imagePreview.appendChild(
@@ -874,31 +1567,184 @@ function editProduct(index) {
         }
     );
 
+}
 
 
-    // عنوان
+
+/* =====================================================
+   UPLOAD IMAGE
+===================================================== */
+
+async function uploadImage(file) {
+
+    const extension =
+        file.name
+            .split(".")
+            .pop()
+            .toLowerCase();
+
+
+    const randomName =
+        crypto.randomUUID();
+
+
+    const filePath =
+        `${Date.now()}-${randomName}.${extension}`;
+
+
+    const {
+        error
+    } =
+        await db
+            .storage
+            .from("product-images")
+            .upload(
+                filePath,
+                file,
+                {
+                    cacheControl:
+                        "3600",
+
+                    upsert:
+                        false,
+
+                    contentType:
+                        file.type
+
+                }
+            );
+
+
+    if (error) {
+
+        throw error;
+
+    }
+
+
+    const {
+        data
+    } =
+        db
+            .storage
+            .from("product-images")
+            .getPublicUrl(
+                filePath
+            );
+
+
+    return data.publicUrl;
+
+}
+
+
+
+/* =====================================================
+   GET PRODUCT IMAGES
+===================================================== */
+
+function getProductImages(product) {
+
+    if (
+        Array.isArray(
+            product.images
+        )
+    ) {
+
+        return product.images.filter(
+            function(url) {
+
+                return (
+                    typeof url === "string" &&
+                    url.trim() !== ""
+                );
+
+            }
+        );
+
+    }
+
+
+    if (
+        product.image
+    ) {
+
+        return [
+            product.image
+        ];
+
+    }
+
+
+    return [];
+
+}
+
+
+
+/* =====================================================
+   EDIT PRODUCT
+===================================================== */
+
+function editProduct(product) {
+
+    editingId =
+        product.id;
+
 
     document.getElementById(
-        "formTitle"
-    ).textContent =
+        "productName"
+    ).value =
+        product.name || "";
+
+
+    document.getElementById(
+        "productPrice"
+    ).value =
+        product.price || "";
+
+
+    document.getElementById(
+        "productCategory"
+    ).value =
+        product.category || "دکور چوبی";
+
+
+    document.getElementById(
+        "productDescription"
+    ).value =
+        product.description || "";
+
+
+    selectedFiles =
+        [];
+
+
+    imageFileInput.value =
+        "";
+
+
+    const images =
+        getProductImages(
+            product
+        );
+
+
+    showExistingImages(
+        images
+    );
+
+
+    formTitle.textContent =
         "ویرایش محصول";
 
 
-
-    // دکمه
-
-    document.getElementById(
-        "formSubmitButton"
-    ).textContent =
+    formSubmitButton.textContent =
         "ذخیره تغییرات";
 
 
-
-    // نمایش لغو
-
     cancelEditButton.style.display =
         "block";
-
 
 
     window.scrollTo({
@@ -913,22 +1759,25 @@ function editProduct(index) {
 
 
 
-// ==========================================
-// لغو ویرایش
-// ==========================================
+/* =====================================================
+   CANCEL EDIT
+===================================================== */
 
 function cancelEdit() {
 
+    editingId =
+        null;
 
-    editingIndex =
-        -1;
 
-
-    selectedImages =
+    selectedFiles =
         [];
 
 
     productForm.reset();
+
+
+    imageFileInput.value =
+        "";
 
 
     imagePreview.innerHTML = `
@@ -940,28 +1789,23 @@ function cancelEdit() {
     `;
 
 
-    document.getElementById(
-        "formTitle"
-    ).textContent =
+    formTitle.textContent =
         "افزودن محصول جدید";
 
 
-    document.getElementById(
-        "formSubmitButton"
-    ).textContent =
+    formSubmitButton.textContent =
         "+ افزودن محصول";
 
 
     cancelEditButton.style.display =
         "none";
 
+
+    uploadStatus.style.display =
+        "none";
+
 }
 
-
-
-// ==========================================
-// دکمه لغو
-// ==========================================
 
 cancelEditButton.addEventListener(
     "click",
@@ -974,78 +1818,16 @@ cancelEditButton.addEventListener(
 
 
 
-// ==========================================
-// حذف محصول
-// ==========================================
-
-function deleteProduct(index) {
-
-
-    const product =
-        adminProducts[index];
-
-
-    if (!product) {
-
-        return;
-
-    }
-
-
-    const result =
-        confirm(
-
-            `آیا مطمئنی می‌خواهی «${product.name}» را حذف کنی؟`
-
-        );
-
-
-    if (!result) {
-
-        return;
-
-    }
-
-
-    adminProducts.splice(
-        index,
-        1
-    );
-
-
-    saveProducts();
-
-
-    renderAdminProducts();
-
-
-
-    if (
-        editingIndex === index
-    ) {
-
-        cancelEdit();
-
-    }
-
-}
-
-
-
-// ==========================================
-// ثبت فرم
-// ==========================================
+/* =====================================================
+   SAVE PRODUCT
+===================================================== */
 
 productForm.addEventListener(
     "submit",
-    function(event) {
-
+    async function(event) {
 
         event.preventDefault();
 
-
-
-        // اطلاعات
 
         const name =
             document
@@ -1083,50 +1865,10 @@ productForm.addEventListener(
                 .trim();
 
 
-
-        // عکس‌ها
-
-        let finalImages =
-            selectedImages;
-
-
-
-        // اگر در حالت ویرایش هستیم
-        // و عکس جدید انتخاب نشده
-
-        if (
-
-            finalImages.length === 0 &&
-
-            editingIndex !== -1
-
-        ) {
-
-
-            finalImages =
-
-                adminProducts[
-                    editingIndex
-                ].images ||
-
-                [
-                    adminProducts[
-                        editingIndex
-                    ].image
-                ];
-
-        }
-
-
-
-        // بدون عکس
-
-        if (
-            finalImages.length === 0
-        ) {
+        if (!name) {
 
             alert(
-                "لطفاً حداقل یک عکس انتخاب کن."
+                "نام محصول را وارد کن."
             );
 
             return;
@@ -1134,101 +1876,344 @@ productForm.addEventListener(
         }
 
 
-
-        // محصول جدید
-
-        const productData = {
-
-            name:
-                name,
-
-            description:
-                description,
-
-            price:
-                price,
-
-            // عکس اصلی
-
-            image:
-                finalImages[0],
-
-            // همه عکس‌ها
-
-            images:
-                finalImages,
-
-            category:
-                category
-
-        };
-
-
-
-        // افزودن
-
         if (
-            editingIndex === -1
+            price < 0 ||
+            Number.isNaN(price)
         ) {
 
+            alert(
+                "قیمت محصول معتبر نیست."
+            );
 
-            adminProducts.push(
-                productData
+            return;
+
+        }
+
+
+        formSubmitButton.disabled =
+            true;
+
+
+        formSubmitButton.textContent =
+            "در حال ذخیره...";
+
+
+        uploadStatus.style.display =
+            "block";
+
+
+        try {
+
+            let finalImages = [];
+
+
+            /* -----------------------------------------
+               حالت ویرایش
+            ----------------------------------------- */
+
+            if (
+                editingId !== null
+            ) {
+
+                const oldProduct =
+                    adminProducts.find(
+                        function(product) {
+
+                            return (
+                                product.id ===
+                                editingId
+                            );
+
+                        }
+                    );
+
+
+                finalImages =
+                    getProductImages(
+                        oldProduct || {}
+                    );
+
+            }
+
+
+            /* -----------------------------------------
+               آپلود عکس‌های جدید
+            ----------------------------------------- */
+
+            if (
+                selectedFiles.length > 0
+            ) {
+
+                finalImages = [];
+
+
+                for (
+                    let i = 0;
+                    i < selectedFiles.length;
+                    i++
+                ) {
+
+                    uploadStatus.textContent =
+                        `در حال آپلود عکس ${i + 1} از ${selectedFiles.length}...`;
+
+
+                    const url =
+                        await uploadImage(
+                            selectedFiles[i]
+                        );
+
+
+                    finalImages.push(
+                        url
+                    );
+
+                }
+
+            }
+
+
+            /* -----------------------------------------
+               بررسی عکس
+            ----------------------------------------- */
+
+            if (
+                finalImages.length === 0
+            ) {
+
+                throw new Error(
+                    "حداقل یک عکس برای محصول انتخاب کن."
+                );
+
+            }
+
+
+            const productData = {
+
+                name:
+                    name,
+
+                description:
+                    description,
+
+                price:
+                    price,
+
+                image:
+                    finalImages[0],
+
+                images:
+                    finalImages,
+
+                category:
+                    category
+
+            };
+
+
+            /* -----------------------------------------
+               افزودن
+            ----------------------------------------- */
+
+            if (
+                editingId === null
+            ) {
+
+                const {
+                    error
+                } =
+                    await db
+                        .from("products")
+                        .insert(
+                            productData
+                        );
+
+
+                if (error) {
+
+                    throw error;
+
+                }
+
+
+                showMessage(
+                    "محصول با موفقیت اضافه شد ✅"
+                );
+
+            }
+
+
+            /* -----------------------------------------
+               ویرایش
+            ----------------------------------------- */
+
+            else {
+
+                const {
+                    error
+                } =
+                    await db
+                        .from("products")
+                        .update(
+                            productData
+                        )
+                        .eq(
+                            "id",
+                            editingId
+                        );
+
+
+                if (error) {
+
+                    throw error;
+
+                }
+
+
+                showMessage(
+                    "محصول با موفقیت ویرایش شد ✅"
+                );
+
+            }
+
+
+            await loadProducts();
+
+
+            cancelEdit();
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Save product error:",
+                error
             );
 
 
             alert(
-                "محصول با موفقیت اضافه شد ✅"
+                "خطا در ذخیره محصول:\n\n" +
+                error.message
             );
 
         }
 
 
+        finally {
 
-        // ویرایش
-
-        else {
-
-
-            adminProducts[
-                editingIndex
-            ] =
-                productData;
+            formSubmitButton.disabled =
+                false;
 
 
-            alert(
-                "محصول با موفقیت ویرایش شد ✅"
-            );
+            if (
+                editingId === null
+            ) {
+
+                formSubmitButton.textContent =
+                    "+ افزودن محصول";
+
+            }
+
+            else {
+
+                formSubmitButton.textContent =
+                    "ذخیره تغییرات";
+
+            }
+
+
+            uploadStatus.style.display =
+                "none";
 
         }
-
-
-
-        // ذخیره
-
-        saveProducts();
-
-
-        // نمایش
-
-        renderAdminProducts();
-
-
-        // ریست
-
-        cancelEdit();
 
     }
 );
 
 
 
-// ==========================================
-// شروع
-// ==========================================
+/* =====================================================
+   DELETE PRODUCT
+===================================================== */
 
-renderAdminProducts();
+async function deleteProduct(product) {
 
+    const result =
+        confirm(
+            `آیا مطمئنی می‌خواهی «${product.name}» را حذف کنی؟`
+        );
+
+
+    if (!result) {
+
+        return;
+
+    }
+
+
+    try {
+
+        const {
+            error
+        } =
+            await db
+                .from("products")
+                .delete()
+                .eq(
+                    "id",
+                    product.id
+                );
+
+
+        if (error) {
+
+            throw error;
+
+        }
+
+
+        if (
+            editingId ===
+            product.id
+        ) {
+
+            cancelEdit();
+
+        }
+
+
+        await loadProducts();
+
+
+        showMessage(
+            "محصول حذف شد 🗑"
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        alert(
+            "خطا در حذف محصول:\n\n" +
+            error.message
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   START
+===================================================== */
+
+checkSession();
 
 </script>
 
