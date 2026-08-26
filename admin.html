@@ -1204,7 +1204,25 @@ async function loadProducts() {
 /* =====================================================
    RENDER PRODUCTS
 ===================================================== */
+async function loadAdminProducts(){
 
+    const { data, error } = await supabaseClient
+        .from("products")
+        .select("*")
+        .order("id", { ascending: false });
+
+
+    if(error){
+        console.error(error);
+        return;
+    }
+
+
+    adminProducts = data || [];
+
+    renderAdminProducts();
+
+}
 function renderAdminProducts() {
 
     productList.innerHTML =
